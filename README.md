@@ -16,6 +16,8 @@ We need to create a class and an extension method for the IApplicationBuilder in
 
 Now, you need to register the middleware on the Program class 'app.ConfigureExceptionHandler();' and there you go. There is a global handler exception on your API.
 
-### Custom Global Exception as the second approach.
+### Custom Global Exception as the second approach
 If you want to make the message, custom status code and others things, you can create your own custom global exception middleware.
-Create an class "GlobalExceptionMiddleware" or something like that, inject the RequestDelegate and create a InvokeAsync method to intercept the requests and deal with and unhandle error.
+Create an class "GlobalExceptionMiddleware" or something like that, inject the RequestDelegate class and create a InvokeAsync method to intercept the requests and deal with and unhandle error. You can send custom status code, title and details depending of the exception you receive, the class ProblemDetails can be used easily to create the object response. The HandleExceptionAsync method is going to serialize all this and return to the client as a ProblemDetails object.
+Now, you need to create an extension method for the 'WebApplication' class, 'ConfigureCustomExceptionHandler' for example, and use the method 'app.UseMiddleware<GlobalExceptionMiddleware>();' passing the class you've previous created.
+Inside the Program class, need to register this middleware.
