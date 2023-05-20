@@ -12,7 +12,7 @@ This simple .NET 6 CRUD API is to demonstrate how you can handle Global Exceptio
 - To see how it would handle the global exception, just add an 'throw new Exception("Error")' within the endpoint you're testing.
 
 ### Global Exception, first approach using built-in middleware and methods
-We need to create a class and an extension method for the IApplicationBuilder interface. In my case I called it 'ConfigureExceptionHandler'. Inside the method there is the implementation of the UseExceptionHandler that it is going to intercept the requests and if there is an unhandler error, it will return a pattern status code and message as a response.
+We need to create a class, an extension method for the IApplicationBuilder interface and a response class 'ErrorDetails'. In my case I called it 'ConfigureExceptionHandler'. Inside the method there is the implementation of the UseExceptionHandler that it is going to intercept the requests and if there is an unhandler error, it will return a pattern status code and message as a response.
 
 Now, you need to register the middleware on the Program class 'app.ConfigureExceptionHandler();' and there you go. There is a global handler exception on your API.
 
