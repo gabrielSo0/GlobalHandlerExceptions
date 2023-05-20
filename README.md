@@ -23,3 +23,6 @@ Create a class "GlobalExceptionMiddleware" or something like that, inject the Re
 
 Now, you need to create an extension method for the 'WebApplication' class, 'ConfigureCustomExceptionHandler' for example, and use the method 'app.UseMiddleware<GlobalExceptionMiddleware>();' passing the class you've previous created.
 Inside the Program class, need to register this middleware.
+  
+## NOTE
+There is something to note, your global exception will only be the response if the error that occured was not handled by a try/catch. So, the try/catch block will always take precedence.
