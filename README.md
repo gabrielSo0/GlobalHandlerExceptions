@@ -7,6 +7,8 @@ This simple .NET 6 CRUD API is to demonstrate how you can handle Global Exceptio
 - Install .NET 6 SDK. If you already have, you're good to go.
 - Clone the repo on your machine.
 - VSCode environment: inside the project's folder, open a terminal, or your VScode. Execute the command 'dotnet build', and 'dotnet run' to run the API.
-- VS: Just execute the project within the Visual Studio.
+- VS environment: Just execute the project within the Visual Studio.
 - To send request, use postman or similar (basic url: https:localhost:port/user)
 - To see how it would handle the global exception, just add an 'throw new Exception("Error")' within the endpoint you're testing.
+
+### Global Exception, first approache using built-in middleware and methods.
