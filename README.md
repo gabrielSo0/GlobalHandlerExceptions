@@ -11,12 +11,12 @@ A simple .NET 6 CRUD API to demonstrate how you can handle Global Exceptions usi
 - To send request, use postman or similar (basic url: https:localhost:port/user)
 - To see how it would handle the global exception, just add an 'throw new Exception("Error")' within the endpoint you're testing.
 
-### Global Exception, first approach using built-in middleware and methods
+### 1º approach - Built-in middleware and methods
 We need to create a class, an extension method for the IApplicationBuilder interface and a response class 'ErrorDetails'. In my case I called it 'ConfigureExceptionHandler'. Inside the method there is the implementation of the UseExceptionHandler that it is going to intercept the requests and if there is an unhandler error, it will return a pattern status code and message as a response.
 
 You need to register the middleware on the Program class 'app.ConfigureExceptionHandler();' and there you go. there is a global handler exception on your API.
 
-### Custom Global Exception as the second approach
+### 2º approach - Custom Global Exception
 If you want to make the message, custom status code and others things, you can create your own custom global exception middleware.
 
 Create a class "GlobalExceptionMiddleware" or something like that, inject the RequestDelegate class and create a InvokeAsync method to intercept the requests and deal with and unhandle error. You can send custom status code, title and details depending of the exception you receive, the class ProblemDetails can be used easily to create the object response. The HandleExceptionAsync method is going to serialize all this and return to the client as a ProblemDetails object.
